@@ -2,8 +2,11 @@ import cv2
 import numpy as np
 import time
 import PoseModule as pm
+#live video
+cap = cv2.VideoCapture(0)
+
 #load video
-cap = cv2.VideoCapture("AiTrainer/weight2.mp4")
+#cap = cv2.VideoCapture("AiTrainer/weight2.mp4")
 #initialize pose detector
 detector = pm.poseDetector()
 count = 0
@@ -38,7 +41,7 @@ while True:
             if dir == 1:
                 count += 0.5
                 dir = 0
-        print(count)
+        #print(count)
 
         # Draw Bar
         cv2.rectangle(img, (1100, 100), (1175, 650), color, 3)
