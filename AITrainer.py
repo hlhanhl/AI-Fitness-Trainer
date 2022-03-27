@@ -2,13 +2,14 @@ import cv2
 import numpy as np
 import time
 import PoseModule as pm
-
-cap = cv2.VideoCapture("AiTrainer/weight1.mp4")
-
+#load video
+cap = cv2.VideoCapture("AiTrainer/weight2.mp4")
+#initialize pose detector
 detector = pm.poseDetector()
 count = 0
 dir = 0
 pTime = 0
+#reads video
 while True:
     success, img = cap.read()
     img = cv2.resize(img, (1280, 720))
@@ -20,7 +21,7 @@ while True:
         # Right Arm
         angle = detector.findAngle(img, 12, 14, 16)
         # # Left Arm
-        #angle = detector.findAngle(img, 11, 13, 15,False)
+        angle = detector.findAngle(img, 11, 13, 15)
         per = np.interp(angle, (210, 310), (0, 100))
         bar = np.interp(angle, (220, 310), (650, 100))
         # print(angle, per)
