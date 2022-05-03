@@ -2,6 +2,7 @@ import cv2
 import mediapipe as mp
 import time
 import math
+import json
 
 class poseDetector():
 
@@ -21,7 +22,8 @@ class poseDetector():
         if self.results.pose_landmarks:
             if draw:
                 self.mpDraw.draw_landmarks(img, self.results.pose_landmarks.landmark)
-        return img
+            return img
+        return None
 
     def findPosition(self, img, draw=True):
         self.lmList = []
@@ -32,7 +34,8 @@ class poseDetector():
                 self.lmList.append([id, cx, cy])
                 if draw:
                     cv2.circle(img, (cx, cy), 5, (255, 0, 0), cv2.FILLED)
-        return self.lmList
+            return self.lmList
+        return None
 
     def findAngle(self, img, p1, p2, p3, draw=True):
          # Get the landmarks
@@ -63,7 +66,7 @@ class poseDetector():
         return angle
 
 def main():
-    cap = cv2.VideoCapture('PoseVideos/1.mp4')
+    cap = cv2.VideoCapture('videos/badcurl.mp4')
     pTime = 0
     detector = poseDetector()
     while True:

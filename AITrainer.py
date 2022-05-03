@@ -3,10 +3,10 @@ import numpy as np
 import time
 import PoseModule as pm
 #live video
-cap = cv2.VideoCapture(0)
+#cap = cv2.VideoCapture(0)
 
 #load video
-#cap = cv2.VideoCapture("AiTrainer/weight2.mp4")
+cap = cv2.VideoCapture("videos/barbellExpert.mp4")
 #initialize pose detector
 detector = pm.poseDetector()
 count = 0
@@ -22,7 +22,7 @@ while True:
     # print(lmList)
     if len(lmList) != 0:
         # Right Arm
-        angle = detector.findAngle(img, 12, 14, 16)
+        #angle = detector.findAngle(img, 12, 14, 16)
         # # Left Arm
         angle = detector.findAngle(img, 11, 13, 15)
         per = np.interp(angle, (210, 310), (0, 100))
