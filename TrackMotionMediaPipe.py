@@ -14,7 +14,7 @@ color = (255, 0, 0)
 thickness = 1
 
 
-def extractMotionSequence(vid_path,motion_path, debug=True):
+def extractMotionSequence(vid_path, debug=False):
     cap = cv2.VideoCapture(vid_path)
     detector = pm.poseDetector()
 
@@ -64,7 +64,7 @@ def extractMotionSequence(vid_path,motion_path, debug=True):
     return poses
 
 def main():
-    extractMotionSequence("videos/barbellExpert.mp4",'motions/barbell_expert.npy')
+    extractMotionSequence("videos/barbellExpert.mp4")
     f = open('mpposes.json')
     data = json.load(f)
 

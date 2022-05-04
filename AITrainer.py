@@ -2,6 +2,7 @@ import cv2
 import numpy as np
 import time
 import PoseModule as pm
+import json
 #live video
 #cap = cv2.VideoCapture(0)
 
@@ -12,6 +13,12 @@ detector = pm.poseDetector()
 count = 0
 dir = 0
 pTime = 0
+
+#read angle
+f = open('angles.json')
+expert_angles = json.load(f)
+ex_angle = expert_angles['13']
+
 #reads video
 while True:
     success, img = cap.read()
@@ -25,8 +32,8 @@ while True:
         #angle = detector.findAngle(img, 12, 14, 16)
         # # Left Arm
         angle = detector.findAngle(img, 11, 13, 15)
-        per = np.interp(angle, (210, 310), (0, 100))
-        bar = np.interp(angle, (220, 310), (650, 100))
+        per = np.interp(angle, (210, ex_angle), (0, 100))
+        bar = np.interp(angle, (220, ex_angle), (650, 100))
         # print(angle, per)
 
         # Check for the dumbbell curls
